@@ -72,9 +72,11 @@ public class StorageService {
         }
         return c;
     }
+
     public Optional<Product> getProductById(UUID id) {
         return Optional.ofNullable(storageProducts.get(id));
     }
+
     public void whatContainBasket() {
         int sum = returnCount();
         int specialGoods = 0;
@@ -112,7 +114,6 @@ public class StorageService {
     public void cleanBasket() {
         storageProducts.clear();
     }
-
 
 
     public void printBasket() {

@@ -18,17 +18,21 @@ public class Article implements Searchable {
     }
 
     @Override
-    public UUID getId(){return id;}
+    public UUID getId() {
+        return id;
+    }
 
     @Override
     public String toString() {
         return "Название статьи: " + nameOfArticle + ". Текст статьи: " + text;
     }
+
     @JsonIgnore
     @Override
     public String searchTerm() {
         return nameOfArticle + " " + text;
     }
+
     @JsonIgnore
     @Override
     public String getOfTypeContent() {

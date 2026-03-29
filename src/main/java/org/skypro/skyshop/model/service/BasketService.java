@@ -10,32 +10,35 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
 @Service
 public class BasketService {
     private final ProductBasket productBasket;
     private final StorageService storageService;
-    public BasketService(ProductBasket productBasket, StorageService storageService){
+
+    public BasketService(ProductBasket productBasket, StorageService storageService) {
         this.productBasket = productBasket;
-        this.storageService=storageService;
+        this.storageService = storageService;
     }
-    public void addProduct(UUID id){
+
+    public void addProduct(UUID id) {
         if (!storageService.getProductById(id).isPresent()) {
             throw new IllegalArgumentException();
-        }
-        else{
+        } else {
             productBasket.addToBasket(id);
         }
     }
-    public UserBasket getUserBasket(){
-       Map<UUID, Integer> mapBasket = productBasket.getAllProducts();
-       List<BasketItem> items = mapBasket.entrySet().stream().
-               map(entry -> {
-                   UUID id = entry.getKey();
-                   int quantity = entry.getValue();
-                   Product product = storageService.getProductById(id).
-                           orElseThrow(()->new IllegalArgumentException("Продукт не найден:"+ id));
-                   return new BasketItem( product, quantity);
-               }).collect(Collectors.toList());
-       return new UserBasket(items);
+
+    public UserBasket getUserBasket() {
+        Map<UUID, Integer> mapBasket = productBasket.getAllProducts();
+        List<BasketItem> items = mapBasket.entrySet().stream().
+                map(entry -> {
+                    UUID id = entry.getKey();
+                    int quantity = entry.getValue();
+                    Product product = storageService.getProductById(id).
+                            orElseThrow(() -> new IllegalArgumentException("Продукт не найден:" + id));
+                    return new BasketItem(product, quantity);
+                }).collect(Collectors.toList());
+        return new UserBasket(items);
     }
 }

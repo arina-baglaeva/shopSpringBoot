@@ -12,7 +12,8 @@ public class SearchResult {
         this.name = name;
         this.contentType = contentType;
     }
-    public static SearchResult fromSearchable(Searchable obj){
+
+    public static SearchResult fromSearchable(Searchable obj) {
         SearchResult searchResult = new SearchResult(obj.getId(), obj.getName(), obj.getOfTypeContent());
         return searchResult;
     }
