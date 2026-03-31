@@ -16,6 +16,7 @@ public class ProductBasket {
 
     public void addToBasket(UUID id) {
         Integer current = mapOfProduct.get(id);
+
         if (current == null) {
             mapOfProduct.put(id, 1);
         } else {

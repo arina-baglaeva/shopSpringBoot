@@ -8,9 +8,12 @@ public class UserBasket {
 
     public UserBasket(List<BasketItem> basketItem) {
         this.basketItem = basketItem;
-        this.total = basketItem.stream().mapToInt(item -> item.getProduct().getPrice() * item.getCount()).sum();
+        this.total = calculateTotal(basketItem);
     }
-
+    public int calculateTotal( List<BasketItem> basketItem){
+        return basketItem.stream().
+                mapToInt(item -> item.getProduct().getPrice() * item.getCount()).sum();
+    }
     public List<BasketItem> getBasketItem() {
         return this.basketItem;
     }
