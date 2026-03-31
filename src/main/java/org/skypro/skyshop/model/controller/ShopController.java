@@ -21,33 +21,38 @@ public class ShopController {
     private final StorageService storageService;
     private final SearchService searchService;
     private final BasketService basketService;
-    public ShopController(StorageService storageService, SearchService searchService, BasketService basketService){
+
+    public ShopController(StorageService storageService, SearchService searchService, BasketService basketService) {
         this.storageService = storageService;
         this.searchService = searchService;
         this.basketService = basketService;
     }
+
     @GetMapping("/products")
-    public Collection<Product> getAllProducts(){
+    public Collection<Product> getAllProducts() {
         return storageService.getStorageProducts();
 
     }
 
     @GetMapping("/articles")
-    public Collection<Article> getAllArticles(){
+    public Collection<Article> getAllArticles() {
         return storageService.getStorageArticles();
     }
+
     @GetMapping("/search")
-    public Collection<SearchResult> searchResultsCol(@RequestParam String pattern){
+    public Collection<SearchResult> searchResultsCol(@RequestParam String pattern) {
         return searchService.search(pattern);
     }
+
     @GetMapping("/basket/{id}")
-    public String addProduct(@PathVariable("id") UUID id){
+    public String addProduct(@PathVariable("id") UUID id) {
         basketService.addProduct(id);
-        Product product = storageService.getProductById(id).orElseThrow(()-> new IllegalArgumentException("Продукт не найден"));
-        return "*Продукт "+product.getName()+" успешно добавлен*.";
+        Product product = storageService.getProductById(id).orElseThrow(() -> new IllegalArgumentException("Продукт не найден"));
+        return "*Продукт " + product.getName() + " успешно добавлен*.";
     }
+
     @GetMapping("/basket")
-    public UserBasket getUserBasket(){
+    public UserBasket getUserBasket() {
         return basketService.getUserBasket();
     }
 }

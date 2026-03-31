@@ -14,9 +14,11 @@ public abstract class Product implements Searchable {
         this.id = id;
         this.nameOfProduct = nameOfProduct;
     }
-    public UUID getId(){
+
+    public UUID getId() {
         return id;
     }
+
     public abstract int getPrice();
 
     public String getName() {
@@ -30,10 +32,12 @@ public abstract class Product implements Searchable {
     public boolean isSpecial() {
         return false;
     }
+
     @JsonIgnore
     public String searchTerm() {
         return nameOfProduct;
     }
+
     @JsonIgnore
     public String getOfTypeContent() {
         return "PRODUCT";
