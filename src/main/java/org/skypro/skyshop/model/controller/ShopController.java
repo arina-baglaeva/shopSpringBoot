@@ -1,8 +1,8 @@
 package org.skypro.skyshop.model.controller;
 
 import org.skypro.skyshop.model.article.Article;
-import org.skypro.skyshop.model.basket.ProductBasket;
 import org.skypro.skyshop.model.basket.UserBasket;
+import org.skypro.skyshop.model.exception.NoSuchProductException;
 import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.search.SearchResult;
 import org.skypro.skyshop.model.service.BasketService;
@@ -47,7 +47,7 @@ public class ShopController {
     @GetMapping("/basket/{id}")
     public String addProduct(@PathVariable("id") UUID id) {
         basketService.addProduct(id);
-        Product product = storageService.getProductById(id).orElseThrow(() -> new IllegalArgumentException("Продукт не найден"));
+        Product product = storageService.getProductById(id).orElseThrow(()-> new NoSuchProductException("Продукт не найден!"));
         return "*Продукт " + product.getName() + " успешно добавлен*.";
     }
 
