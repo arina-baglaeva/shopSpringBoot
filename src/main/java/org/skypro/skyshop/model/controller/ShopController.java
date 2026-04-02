@@ -47,7 +47,7 @@ public class ShopController {
     @GetMapping("/basket/{id}")
     public String addProduct(@PathVariable("id") UUID id) {
         basketService.addProduct(id);
-        Product product = storageService.getProductById(id).orElseThrow(()-> new NoSuchProductException("Продукт не найден!"));
+        Product product = storageService.getProductById(id).orElseThrow(() -> new NoSuchProductException("Продукт не найден!"));
         return "*Продукт " + product.getName() + " успешно добавлен*.";
     }
 

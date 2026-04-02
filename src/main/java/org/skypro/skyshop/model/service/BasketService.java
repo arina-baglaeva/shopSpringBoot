@@ -24,7 +24,7 @@ public class BasketService {
 
     public void addProduct(UUID id) {
         if (!storageService.getProductById(id).isPresent()) {
-            throw new NoSuchProductException("Продукт с id" + id +" не найден");
+            throw new NoSuchProductException("Продукт с id" + id + " не найден");
         } else {
             productBasket.addToBasket(id);
         }

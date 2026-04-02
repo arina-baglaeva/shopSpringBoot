@@ -17,10 +17,7 @@ public class SearchService {
     }
 
     public Collection<Searchable> getAllSearchable() {
-        return Stream.concat(
-                storageService.getStorageArticles().stream().map(a -> (Searchable) a),
-                storageService.getStorageProducts().stream().map(p -> (Searchable) p)
-        ).collect(Collectors.toList());
+        return Stream.concat(storageService.getStorageArticles().stream().map(a -> (Searchable) a), storageService.getStorageProducts().stream().map(p -> (Searchable) p)).collect(Collectors.toList());
     }
 
     public Collection<SearchResult> search(String s) {

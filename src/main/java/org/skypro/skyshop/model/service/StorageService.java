@@ -45,11 +45,6 @@ public class StorageService {
         return basket;
     }
 
-    public void add(Product pr) {
-        storageProducts.put(pr.getId(), pr);
-        System.out.println("Добавлен продукт: " + pr.getName());
-    }
-
     private Map<UUID, Article> fillStorageArticles() {
         Article art1 = new Article(UUID.randomUUID(), "Сыр: Искусство вкуса и традиций", "Сыр — это не просто молочный продукт, это целая культура, насчитывающая тысячелетия истории. Наш сыр создается по традиционным рецептам из отборного молока, с соблюдением всех технологических процессов. Каждая головка сыра вызревает не менее 60 дней, что придает ему неповторимый насыщенный вкус и аромат.");
         Article art2 = new Article(UUID.randomUUID(), "Колбаса: Наслаждение классикой", "Наша колбаса — это возвращение к истокам качества. Изготовленная из отборной говядины и свинины с добавлением натуральных специй, она сохраняет все лучшие традиции мясного производства. Нежная текстура, насыщенный мясной вкус и аппетитный аромат делают эту колбасу идеальным выбором для завтраков, бутербродов или как компонент для салатов.");
@@ -91,6 +86,11 @@ public class StorageService {
             System.out.println("Итого: " + sum);
             System.out.println("Специальных товаров: " + specialGoods);
         }
+    }
+
+    public void add(Product pr) {
+        storageProducts.put(pr.getId(), pr);
+        System.out.println("Добавлен продукт: " + pr.getName());
     }
 
     public boolean findProduct(String name) {
